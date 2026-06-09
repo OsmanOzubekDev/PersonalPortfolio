@@ -328,6 +328,10 @@ h1 {
     margin: 0.67em 0;
 }
 
+.p {
+    color:white;
+}
+
 /* ------------------------------------------------------------------- 
  * ## grouping
  * ------------------------------------------------------------------- */
@@ -3519,6 +3523,14 @@ input[type="button"].btn--primary:focus {
     position: relative;
 }
 
+/* Make the visitor paragraph and counter text white */
+.s-hero__content-about p {
+    color: var(--color-white);
+}
+.s-hero__content-about #counter {
+    color: var(--color-white);
+}
+
 .s-hero__content h3 span, .s-hero__content h3 a {
     color: white;
 }
@@ -3529,13 +3541,21 @@ input[type="button"].btn--primary:focus {
     text-align: center;
     height: 1px;
     width: 300px;
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgb(152, 152, 152);
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
     position: absolute;
     bottom: 0;
     left: 50%;
 }
+
+/* Ensure visitor counter text (if present) is white */
+.s-hero__counter,
+.s-hero__counter #counter {
+    color: var(--color-white) !important;
+}
+
+
 
 /* ------------------------------------------------------------------- 
  * ## hero social
@@ -4057,6 +4077,157 @@ input[type="button"].btn--primary:focus {
     transform: scale(1.05);
 }
 
+.folio-scroll {
+    display: flex;
+    gap: 1.4rem;
+    overflow-x: auto;
+    padding: var(--vspace-2_5) 0 var(--vspace-1);
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.folio-scroll::-webkit-scrollbar {
+    height: 10px;
+}
+
+.folio-scroll::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.folio-scroll::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.22);
+    border-radius: 999px;
+}
+
+.basicLightbox {
+    background-color: rgba(0, 0, 0, 0.78) !important;
+}
+
+.basicLightbox__placeholder {
+    outline: none;
+}
+
+.folio-card {
+    flex: 0 0 clamp(240px, 28vw, 320px);
+    min-width: 240px;
+    aspect-ratio: 1 / 1;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    background: rgba(255,255,255,0.03);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.folio-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12);
+}
+
+.folio-card__link {
+    display: grid;
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+}
+
+.folio-card__image {
+    position: relative;
+    background: #111;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.folio-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.folio-card:hover .folio-card__image img {
+    transform: scale(1.08);
+}
+
+.folio-card__meta {
+    padding: 1.25rem 1.4rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    background: rgba(8, 8, 8, 0.9);
+}
+
+.folio-card__meta h4 {
+    margin: 0;
+    font-size: 1.35rem;
+    line-height: 1.2;
+    color: white;
+}
+
+.folio-card__meta p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.folio-card__link {
+    display: grid;
+    color: inherit;
+    cursor: pointer;
+}
+
+.modal-popup {
+    padding: 1.5rem;
+}
+
+.modal-popup__desc {
+    padding: 0 0 1.2rem;
+}
+
+.modal-popup__tech {
+    margin: 1rem 0 0.75rem;
+    color: #555;
+    font-size: 0.98rem;
+}
+
+.modal-popup__details {
+    display: inline-block;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+}
+
+.modal-popup__close {
+    border: none;
+    background: transparent;
+    color: #111;
+    font-size: 0.98rem;
+    cursor: pointer;
+    padding: 0.85rem 1.25rem;
+    border-radius: 999px;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.modal-popup__close:hover,
+.modal-popup__close:focus {
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+@media screen and (max-width: 760px) {
+    .folio-scroll {
+        gap: 1rem;
+        padding-bottom: 0.75rem;
+    }
+
+    .folio-card {
+        flex: 0 0 70vw;
+        min-width: 70vw;
+    }
+}
+
 /* ------------------------------------------------------------------- 
  * ## modal popup
  * ------------------------------------------------------------------- */
@@ -4433,6 +4604,10 @@ input[type="button"].btn--primary:focus {
 
 .contact-block a:hover, .contact-block a:focus {
     color: var(--color-2);
+}
+
+.contact-block__content {
+    font-size: 2rem;
 }
 
 .contact-block__header {

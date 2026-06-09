@@ -6,7 +6,7 @@
 (function(html) {
 
     "use strict";
-    
+
     html.className = html.className.replace(/\bno-js\b/g, '') + ' js ';
 
 
@@ -198,7 +198,7 @@
     * ------------------------------------------------------ */
     const ssLightbox = function() {
 
-        const folioLinks = document.querySelectorAll('.folio-item a');
+        const folioLinks = document.querySelectorAll('.folio-card__link');
         const modals = [];
 
         folioLinks.forEach(function(link) {
@@ -207,13 +207,26 @@
                 document.querySelector(modalbox),
                 {
                     onShow: function(instance) {
-                        //detect Escape key press
-                        document.addEventListener("keydown", function(evt) {
+                        const onKeyDown = function(evt) {
                             evt = evt || window.event;
-                            if(evt.keyCode === 27){
-                            instance.close();
+                            if (evt.keyCode === 27) {
+                                instance.close();
                             }
-                        });
+                        };
+                        const onCloseClick = function(evt) {
+                            if (evt.target.closest('.modal-popup__close')) {
+                                instance.close();
+                            }
+                        };
+                        document.addEventListener('keydown', onKeyDown);
+                        instance.element().addEventListener('click', onCloseClick);
+                        instance.__lightboxHandlers = { onKeyDown, onCloseClick };
+                    },
+                    onClose: function(instance) {
+                        if (instance.__lightboxHandlers) {
+                            document.removeEventListener('keydown', instance.__lightboxHandlers.onKeyDown);
+                            instance.element().removeEventListener('click', instance.__lightboxHandlers.onCloseClick);
+                        }
                     }
                 }
             )
@@ -228,6 +241,9 @@
         });
 
     };  // end ssLightbox
+
+
+        
 
 
    /* Alert boxes
